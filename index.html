@@ -51,7 +51,10 @@ $cards-per-line: (
 		<div class="card my-3" height="500px">
 			<div class="card-body">
 				<h4 class="card-title" id="word"></h4>
-				<p class="card-text" id="definition"></p>
+				<p class="card-text" id="definition">
+                    
+                    <label style="font-size: 11px;" id="defDate"></label>
+                </p>
 			</div>
 		</div>
 	</div>
@@ -60,6 +63,25 @@ $cards-per-line: (
 </div>
 
 <script>
+    
+/*!
+ * Convert a timestamp into a date
+ * (c) 2019 Chris Ferdinandi, MIT License, https://gomakethings.com
+ * @param   {String|Integer}  timestamp  The timestamp in unix of YYYY-MM-DD HH:MM:SS format
+ * @returns {String}                     A formatted date
+ */
+window.FD = function (timestamp) {
+
+// Create a date object from the timestamp
+var date = new Date(timestamp);
+
+// Create a list of names for the months
+var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October',	'November', 'December'];
+
+// return a formatted date
+return months[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear();
+
+};
 window.clickListen = function(){
     const _t = document.querySelector('input[name="myradio"]:checked');
     if(_t){
@@ -83,7 +105,7 @@ for (var i = 0; i < rad.length; i++) {
 function createRadioElement( name, checked, value , id) {
     var radioInput;
     try {
-        var radioHtml = '<label class="optionTile"><input ree="1"  type="radio" name="' + name + '" data-id="' + id + '"';
+        var radioHtml = '<label><input ree="1"  type="radio" name="' + name + '" data-id="' + id + '"';
         if ( checked ) {
             radioHtml += ' checked="checked"';
         }
@@ -102,6 +124,7 @@ function createRadioElement( name, checked, value , id) {
     }
     return radioInput;
 }
+
 function createFragment(htmlStr) {
     var fragment = document.createDocumentFragment(),
         $elem = document.createElement('div');
@@ -114,8 +137,10 @@ function createFragment(htmlStr) {
 function displayDef(contents){
     const _v = JSON.parse(contents);
     console.log(_v);
-     document.querySelector('#word').innerText = _v.DefinitionID
+    const _word = window.wordMap[_v.DefinitionID];
+     document.querySelector('#word').innerText = _word.Word;
      document.querySelector('#definition').innerText = _v.Definition
+     document.querySelector('#defDate').innerText = window.FD(Date(_v.DatePosted))
 }
 function getIndex(c){
     const _v = JSON.parse(c);
