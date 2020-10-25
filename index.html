@@ -44,7 +44,7 @@ $cards-per-line: (
 </style>
 <div class="container">
 
-    <form name="myForm" id="top" height="400px" style="max-height: 80%;">    
+    <form name="myForm" id="top" height="400px" style="max-height: 80%;overflow-y:scroll">
         <label><input type="radio" name="myradio" value="3">3</label>
         <br>
     </form>
@@ -137,7 +137,7 @@ function createFragment(htmlStr) {
 function displayDef(contents){
     const _v = JSON.parse(contents);
     console.log(_v);
-    const _word = window.wordMap[_v.DefinitionID];
+    const _word = window.wordMap[_v.WordID];
      document.querySelector('#word').innerText = _word.Word;
      document.querySelector('#definition').innerText = _v.Definition
      document.querySelector('#defDate').innerText = window.FD(Date(_v.DatePosted))
