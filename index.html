@@ -44,28 +44,19 @@ $cards-per-line: (
 </style>
 <div class="container">
 
-
-	<header>
-		<h1 class="h2 text-center text-light bg-dark pt-2 pb-3 mb-0">Bootstrap responsive card-deck</h1>
-		<div class="jumbotron py-4 rounded-0">
-			<p class="lead">This is a good solution for SCSS users to build real responsive card-deck with Bootstrap 4.</p>
-			<p class="lead mb-0">A good alternative with CSS only & clean code using Bootstrap 4 List group is available here: <a href="https://codepen.io/migli/pen/gOOmYLb">https://codepen.io/migli/pen/gOOmYLb</a>.</p>
-		</div>
-	</header>
-		<div class="card my-3">
-			<!-- <img src="http://placehold.it/560x560" class="card-img-top"> -->
+    <form name="myForm" id="top" height="400px" style="overflow:scroll">    
+        <label><input type="radio" name="myradio" value="3">3</label>
+        <br>
+    </form>
+		<div class="card my-3" height="500px">
 			<div class="card-body">
 				<h4 class="card-title" id="word"></h4>
 				<p class="card-text" id="definition"></p>
-				<!-- <button class="btn btn-primary" type="button">Button</button> -->
 			</div>
 		</div>
 	</div>
 
-    <form name="myForm" id="top">    
-        <label><input type="radio" name="myradio" value="3">3</label>
-        <br>
-    </form>
+    
 </div>
 
 <script>
@@ -174,3 +165,4 @@ window.getWord = function(){
     window.readTextFile('https://raw.githubusercontent.com/urbanexplorer/UrbanMirror/main/1' + _id + ".json", displayDef)
 }
 </script>
+
