@@ -143,7 +143,7 @@ function displayDef(contents){
      document.querySelector('#defDate').innerText = window.FD(Date.parse((_v.DatePosted)))
 }
 function getIndex(c){
-    const _v = JSON.parse(c);
+    const _v = window.allWords
     window.wordMap = {}
     for(var i=0;i<_v.length;i++){
         const _i = _v[i];
@@ -182,7 +182,7 @@ window.readTextFile = function(file, cb)
     }
     rawFile.send(null);
 }
-window.readTextFile('https://raw.githubusercontent.com/urbanexplorer/UrbanMirror/main/index.json', getIndex)
+//window.readTextFile('https://raw.githubusercontent.com/urbanexplorer/UrbanMirror/main/index.json', getIndex)
 
 window.getWord = function(){
     let _id = "";
