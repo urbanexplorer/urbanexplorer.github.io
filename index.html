@@ -1,7 +1,6 @@
 <head>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.2/css/bootstrap.css">
-<script href="https://raw.githubusercontent.com/urbanexplorer/UrbanMirror/main/index.js" type="text/javascript">
-</script>
+<script type="text/javascript" src="https://raw.githubusercontent.com/urbanexplorer/UrbanMirror/main/index.js"></script>
 </head>
 
 <style>
@@ -13,7 +12,7 @@
         }
     [name='myForm'] label {
             display: block;
-        
+
         }
 // Bootstrap 4 breakpoints & gutter
 $grid-breakpoints: (
@@ -36,35 +35,35 @@ $cards-per-line: (
 );
 
 @each $name, $breakpoint in $grid-breakpoints {
-	@media (min-width: $breakpoint) {
-		.card-deck .card {
-			flex: 0 0 calc(#{100/map-get($cards-per-line, $name)}% - #{$grid-gutter-width});
-		}
-	}
+        @media (min-width: $breakpoint) {
+                .card-deck .card {
+                        flex: 0 0 calc(#{100/map-get($cards-per-line, $name)}% - #{$grid-gutter-width});
+                }
+        }
 }
 </style>
 <div class="container">
 
     <form name="myForm" id="top" height="400px" style="max-height: 80%;overflow-y:scroll">
-                
+
     </form>
-		<div class="card my-3" height="500px">
-			<div class="card-body">
-				<h4 class="card-title" id="word"></h4>
-				<p class="card-text" id="definition">
-                    
-                    
+                <div class="card my-3" height="500px">
+                        <div class="card-body">
+                                <h4 class="card-title" id="word"></h4>
+                                <p class="card-text" id="definition">
+
+
                 </p>
                 <label style="font-size: 11px;" id="defDate"></label>
-			</div>
-		</div>
-	</div>
+                        </div>
+                </div>
+        </div>
 
-    
+
 </div>
 
 <script>
-    
+
 /*!
  * Convert a timestamp into a date
  * (c) 2019 Chris Ferdinandi, MIT License, https://gomakethings.com
@@ -77,7 +76,7 @@ window.FD = function (timestamp) {
 var date = new Date(timestamp);
 
 // Create a list of names for the months
-var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October',	'November', 'December'];
+var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
 // return a formatted date
 return months[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear();
@@ -86,9 +85,9 @@ return months[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear(
 window.clickListen = function(){
     const _t = document.querySelector('input[name="myradio"]:checked');
     if(_t){
-        console.log(_t.value)        
+        console.log(_t.value)
     }
-    
+
 }
 window.redoEvent = function(cb){
     var rad = document.myForm.myradio;
@@ -113,7 +112,7 @@ function createRadioElement( name, checked, value , id) {
         if (value ) {
             radioHtml += ' value="' + value + '"';
         }
-        
+
         radioHtml += '/>';
         if (value ) {
             radioHtml += value
@@ -148,7 +147,7 @@ function getIndex(c){
     window.wordMap = {}
     for(var i=0;i<_v.length;i++){
         const _i = _v[i];
-        window.wordMap[_i.ID] = _i;        
+        window.wordMap[_i.ID] = _i;
         var $target = document.querySelector('#top')
         $target.appendChild(createFragment(createRadioElement('myradio',false, window.wordMap[_i.ID].Word, window.wordMap[_i.ID].ID)));
     }
