@@ -142,7 +142,7 @@ function displayDef(contents){
      document.querySelector('#defDate').innerText = window.FD(Date.parse((_v.DatePosted)))
 }
 function getIndex(c){
-    const _v = window.allWords
+    const _v = window.allwords = c
     window.wordMap = {}
     for(var i=0;i<_v.length;i++){
         const _i = _v[i];
